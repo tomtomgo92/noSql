@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <audio id='audio' src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+    <input type="button" id="aa">
+    <script>
+        window.onload = setup;
+        function setup () {
+            var aa = document.getElementById('aa');
+            var m = 'pause';
+            aa.addEventListener("click", function(){
+                var audio = document.getElementById('audio');
+
+                if (m == 'pause') {
+                    m = 'play';
+                } else {
+                    m = 'pause';
+                }
+
+                audio[m]();
+            }, false);
+            console.log('aas');
+        }
+    </script>
+</body>
+</html>

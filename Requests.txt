@@ -1,0 +1,35 @@
+Utiliser la bonne bdd : 
+use incidents
+
+Récupérer les collections de la base :
+db.getCollectionNames();
+
+Récupérer toute la collection :
+db.incidents.find({});
+
+Création d'un index :
+db.incidents.createIndex({"fields.date" : 1})
+
+Récupérer le nombre d'incidents par localisation :
+db.incidents.aggregate([{"$unwind" : "$fields"}, {"$unwind" : "$fields.localisation"},{ $group : { _id : "$fields.localisation", total : {$sum : 1}  } }, {$sort : {total : -1}}]);
+
+Récupérer tous les incidens de type "déraillement" :
+db.incidents.find({ "fields.type" : {$regex : /(D|d)éraillement/} }).sort({"fields.date" : 1});
+
+Insérer dans la bdd un incident :
+db.incidents.insertOne({datasetid : "incidents-securite", recordid :"1", fields : { localisation : "Paris", commentaires : "Incident quelconque", type : "troll dans un train", esr : "non", date : "2018-03-22" },record_timestamp : "2018-03-22T10:24:53+1:00" })
+
+Trier les résultats par date :
+db.incidents.find({}).sort({"fields.date" : -1}).pretty();
+
+Trouver les accidents mortels :
+db.incidents.find({"fields.esr" : "oui"}, {"fields.type" : 1});
+
+Update de la bdd avec les dates :
+db.incidents.update({"recordid":"1"}, {$currentDate : { "fields.date" : true , "record_timestamp" : {$type : "timestamp" }}},{ $set : { "fields.localisation" : "Lyon", "fields.esr" : "oui" } })
+
+Trouver l'item qui à été ajouté :
+db.incidents.find({"fields.type" : {$regex : "^troll"}}).sort({"fields.date" : -1}).pretty()
+
+Récupérer le nombre d'accidents par an : 
+db.incidents.aggregate([{"$unwind":"$fields"},{ $group : { _id : {$substr:["$fields.date", 0, 4]}, count : { $sum : 1 } } }]);
