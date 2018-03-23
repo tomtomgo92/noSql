@@ -43,28 +43,27 @@ var ctxB = document.getElementById("barChart").getContext('2d');
 var myBarChart = new Chart(ctxB, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["2014", "2015", "2016", "2017", "2018"],
         datasets: [{
-            label: '# of Votes',
-            data: [10, 10, 10, 10, 10, 10],
+            label: 'Accidents ((tt donnees)',
+            data: [439, 520, 660, 752, 49],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(153, 102, 255, 0.2)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(153, 102, 255, 1)'
             ],
             borderWidth: 1
         }]
+        
     },
     options: {
         scales: {
@@ -80,7 +79,83 @@ var myBarChart = new Chart(ctxB, {
     </script>
 
 
-    
+<canvas id="lineChart"></canvas>
+                
+<script>
+//line
+var ctxL = document.getElementById("lineChart").getContext('2d');
+var myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+        labels: ["2014", "2015", "2016", "2017", "2018"],
+        datasets: [
+            {
+                label: 'Deraillements',
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [87, 104, 54, 35, 3]
+            },
+            {
+                label: 'Dont Deraillements ERS',
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [5, 19, 15, 12, 3]
+            }
+        ]
+    },
+    options: {
+        responsive: true
+    }    
+});
+            
+</script>    
+
+<canvas id="lineChart2"></canvas>
+                
+<script>
+//line
+var ctxL = document.getElementById("lineChart2").getContext('2d');
+var myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+        labels: ["2014", "2015", "2016", "2017", "2018"],
+        datasets: [
+            {
+                label: 'Collisions',
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [50, 63, 75, 41, 3]
+            },
+            {
+                label: 'Dont Collisions ERS',
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [4, 19, 17, 16, 2]
+            }
+        ]
+    },
+    options: {
+        responsive: true
+    }    
+});
+            
+</script>    
         
     <div class="esr">
         Un ESR est un incident de sécurité lié à la circulation effective d'un train qui met, 
